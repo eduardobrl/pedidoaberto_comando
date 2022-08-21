@@ -74,7 +74,7 @@ resource "aws_api_gateway_integration" "lambda_function_gtw_integration" {
   http_method             = aws_api_gateway_method.method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.api_handler.invoke_arn
+  uri                     = aws_lambda_function.lambda.invoke_arn
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {
@@ -113,7 +113,7 @@ resource "aws_api_gateway_authorizer" "api_authorizer" {
   name        = "${var.app_name}-${var.microservice_name}-fornecedor"
   rest_api_id = aws_api_gateway_rest_api.api.id
   type          = "COGNITO_USER_POOLS"
-  provider_arns = [data.aws_ssm_parameter.sellbridge_cognito_usuario_user_pool_arn.value]
+  provider_arns = ["arn:aws:cognito-idp:sa-east-1:525636320068:userpool/sa-east-1_uK0Mj9ISA"]
 }
 
 resource "aws_api_gateway_stage" "dev_stage" {
