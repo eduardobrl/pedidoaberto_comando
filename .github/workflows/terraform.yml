@@ -12,10 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Zip output
+        run: pwd
+
       - name: Zip Lambda
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r app.zip app
+          args: zip -qq -r app.zip ../app
 
       - name: Checkout
         uses: actions/checkout@v2
