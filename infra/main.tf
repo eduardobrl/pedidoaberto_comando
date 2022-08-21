@@ -25,6 +25,10 @@ terraform {
   required_version = "~> 1.0"
 }
 
+provider "aws" {
+  region = var.myregion
+}
+
 
 # Lambda
 resource "aws_lambda_permission" "apigw_lambda" {
