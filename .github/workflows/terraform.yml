@@ -53,6 +53,9 @@ jobs:
         working-directory: infra
         run: terraform init
 
+      - name: Rename environment TF VARS
+        run: mv app.zip infra/app.zip
+
       - name: Terraform Validate
         id: validate
         working-directory: infra
