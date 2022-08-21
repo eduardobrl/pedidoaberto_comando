@@ -1,2 +1,2 @@
-microservice_name = "gateway"
+microservice_name = "comando"
 app_name          = "pedidoaberto"
