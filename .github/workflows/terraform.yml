@@ -12,14 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Zip output
-        run: ls -a
-        
-      - name: Zip Lambda
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r app.zip ../app
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -27,6 +19,14 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Zip output
+        run: ls -a
+        
+      - name: Zip Lambda
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r app.zip ../app
 
       - name: Terraform Format
         id: fmt
