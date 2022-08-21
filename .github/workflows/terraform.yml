@@ -7,29 +7,38 @@ on:
   #pull_request:
 
 jobs:
+
+  buildapp:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Zip Lambda
+      uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r app.zip app
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: lambda
+        path: app.zip
+
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    working-directory: infra
     steps:
 
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: lambda
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-      - name: Zip output
-        run: ls -a
-        
-      - name: Zip Lambda
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r app.zip app
-
-      - name: Change Directory
-        run: cd infra
 
       - name: Terraform Format
         id: fmt
