@@ -13,8 +13,8 @@ jobs:
     steps:
 
       - name: Zip output
-        run: pwd
-
+        run: ls -a
+        
       - name: Zip Lambda
         uses: montudor/action-zip@v1
         with:
