@@ -28,6 +28,9 @@ jobs:
         with:
           args: zip -qq -r app.zip app
 
+      - name: Change Directory
+        run: cd infra
+
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
