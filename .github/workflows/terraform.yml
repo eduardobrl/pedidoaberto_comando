@@ -27,6 +27,7 @@ jobs:
 
   terraform:
     name: "Terraform"
+    needs: buildapp
     runs-on: ubuntu-latest
     steps:
 
