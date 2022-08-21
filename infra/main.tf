@@ -37,7 +37,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
   source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountId}:${aws_api_gateway_rest_api.api.id}/*/${aws_api_gateway_method.method.http_method}${aws_api_gateway_resource.resource.path}"
 }
 
-resource "aws_lambda_function" "lambda" {
+resource "aws_lambda_function" "api_handler" {
   filename      = "app.zip"
   function_name = "mylambda"
   role          = aws_iam_role.role.arn
@@ -74,7 +74,7 @@ resource "aws_api_gateway_integration" "lambda_function_gtw_integration" {
   http_method             = aws_api_gateway_method.method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda.invoke_arn
+  uri                     = aws_lambda_function.api_handler.invoke_arn
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {
