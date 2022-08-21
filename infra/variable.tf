@@ -1,10 +1,9 @@
 
 variable "myregion" {
-    type = string
-}
+  description = "AWS region for all resources."
 
-variable "accountId" {
-    type = string
+  type    = string
+  default = "sa-east-1"
 }
 
 variable "microservice_name" {
