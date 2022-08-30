@@ -1,9 +1,10 @@
+import datetime
 import boto3
 from boto3.dynamodb.types import TypeSerializer
 from boto3_type_annotations.dynamodb import Client
-from app.domain.entities.pedido_entity import DetalhePedido, Pedido, StatusPedidoEnum
-from app.domain.entities.produto_entity import Produto
 from botocore.exceptions import ClientError
+
+from src.domain.entities.pedido_entity import Pedido
 
 
 serializer = TypeSerializer()
@@ -36,5 +37,3 @@ class PedidoRepository:
 
         return result
 
-
-    

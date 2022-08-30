@@ -1,6 +1,8 @@
-from marshmallow_dataclass import dataclass as marshmallow_dataclass
+from decimal import Decimal
+from src.domain.decorators.dynamodataclass import dynamodataclass
 
-@marshmallow_dataclass
+
+@dynamodataclass
 class DimensoesProduto:
     """Dimensões do Produto"""
     peso_produto: int
@@ -8,12 +10,12 @@ class DimensoesProduto:
     largura_produto: int
     profundidade_produto: int
 
-@marshmallow_dataclass
+@dynamodataclass
 class Produto:
     """Classe com dados do produto"""
     id_produto: str
     nome_produto: str
-    valor_produto: float
+    valor_produto: Decimal
     sku_produto: str
     dimensoes_produto: DimensoesProduto
     quantidade_produto: int = 0
