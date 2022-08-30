@@ -1,7 +1,6 @@
+from marshmallow_dataclass import dataclass as marshmallow_dataclass
 
-from src.domain.decorators.dynamodataclass import dynamodataclass
-
-@dynamodataclass
+@marshmallow_dataclass
 class Cliente:
     id_cliente: str
 

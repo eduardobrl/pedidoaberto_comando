@@ -3,6 +3,7 @@ import boto3
 from boto3.dynamodb.types import TypeSerializer
 from boto3_type_annotations.dynamodb import Client
 from botocore.exceptions import ClientError
+from app.src.infrastructure.dynamodb.dynamo_utils import DynamoUtils
 
 from src.domain.entities.pedido_entity import Pedido
 
@@ -22,13 +23,23 @@ class PedidoRepository:
         except ClientError as err:
             raise err
 
-        deserialised = {k: [v2 for k2, v2 in v.items()][0] for k, v in result.get("Item").items()}
-        return Pedido.Schema().load(deserialised)
+        return DynamoUtils.deserializar(result)
 
 
     def inserir_pedido(self, pedido: Pedido):
         try:
             result = self.client.put_item(
+                self.table_name,
+                Item=DynamoUtils.serializar(pedido)
+            )
+        except ClientError as err:
+            raise err
+
+        return result
+
+    def atualizar_status_pedido(self, pedido: Pedido):
+        try:
+            result = self.client.update_item(
                 self.table_name,
                 Item={k: serializer.serialize(v) for k, v in Pedido.Schema().dump(pedido).items() if v != ""}
             )
@@ -36,4 +47,3 @@ class PedidoRepository:
             raise err
 
         return result
-

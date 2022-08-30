@@ -1,10 +1,11 @@
 import datetime
 import pytest
-from src.domain.decorators.dynamodataclass import dynamodataclass
+from app.src.infrastructure.dynamodb.dynamo_utils import DynamoUtils
 from src.domain.entities.cliente_entity import Cliente
 from src.domain.entities.pedido_entity import AtualizacaoPedido, DetalhePedido, Pedido, StatusPedidoEnum
 from src.domain.entities.produto_entity import DimensoesProduto, Produto
 from datetime import date
+
 
 def test_pedido():
     dimensoes = DimensoesProduto(1,1,1,1)
@@ -14,7 +15,5 @@ def test_pedido():
     cliente = Cliente("1","2","3","4","5","6","7","8","9")
     pedido = Pedido("123", "123", detalhesPedido, atualizacao, cliente)
 
-
-    print(pedido.serialize(Pedido, pedido))
-
+    pedidoSerializado = DynamoUtils.serializar(pedido)
     assert True

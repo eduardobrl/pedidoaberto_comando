@@ -5,7 +5,6 @@ from marshmallow_dataclass import dataclass as marshmallow_dataclass
 from enum import Enum
 from xmlrpc.client import DateTime
 
-from src.domain.decorators.dynamodataclass import dynamodataclass
 from src.domain.entities.cliente_entity import Cliente
 from src.domain.entities.produto_entity import DimensoesProduto, Produto
 
@@ -16,19 +15,19 @@ class StatusPedidoEnum(Enum):
     ENVIADO = 3
     FINALIZADO = 4
 
-@dynamodataclass
+@marshmallow_dataclass
 class DetalhePedido:
     produto: Produto
     valor_produto: Decimal
     quantidade: int
 
-@dynamodataclass
+@marshmallow_dataclass
 class AtualizacaoPedido:
     status_atualizacao: StatusPedidoEnum
     motivo_atualizacao: str
     data_hora_atualizacao: DateTime
 
-@dynamodataclass
+@marshmallow_dataclass
 class Pedido:
     """Pedidos realizados por usuário do sistema"""
     id_pedido: str
