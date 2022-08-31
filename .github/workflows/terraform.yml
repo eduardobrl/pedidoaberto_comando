@@ -7,27 +7,32 @@ on:
   #pull_request:
 
 jobs:
-
-  buildapp:
-    name: "Build App"
+  build:
+    name: Build App
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Zip Lambda
-        uses: montudor/action-zip@v1
+      - uses: actions/checkout@v2
+      
+      - uses: borales/actions-yarn@v3.0.0
+        working-directory: app/src
         with:
-          args: zip -qq -r app.zip app
+          cmd: install
+
+      - uses: borales/actions-yarn@v3.0.0
+        working-directory: app/src
+        with:
+          cmd: build
 
       - uses: actions/upload-artifact@v2
+        working-directory: app/src
         with:
           name: lambda
-          path: app.zip
+          path: dist/index.zip
+
 
   terraform:
     name: "Terraform"
-    needs: buildapp
+    needs: build
     runs-on: ubuntu-latest
     steps:
 
@@ -53,8 +58,8 @@ jobs:
         working-directory: infra
         run: terraform init
 
-      - name: Rename environment TF VARS
-        run: mv app.zip infra/app.zip
+      - name: Move app source code
+        run: mv index.zip infra/app.zip
 
       - name: Terraform Validate
         id: validate
