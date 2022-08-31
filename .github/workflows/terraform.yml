@@ -14,15 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       
       - uses: actions/setup-node@v3
-        working-directory: app/src
         with:
           node-version: 16
       
-      - run: yarn install
-        working-directory: app/src
+      - run: cd app/src && yarn install
 
-      - run: yarn build
-        working-directory: app/src
+      - run: cd app/src && yarn build
 
       - uses: actions/upload-artifact@v2
         working-directory: app/src
