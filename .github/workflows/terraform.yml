@@ -22,10 +22,9 @@ jobs:
       - run: cd app/src && yarn build
 
       - uses: actions/upload-artifact@v2
-        working-directory: app/src
         with:
           name: lambda
-          path: dist/index.zip
+          path: app/src/dist/index.zip
 
 
   terraform:
