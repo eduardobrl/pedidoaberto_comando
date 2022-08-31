@@ -17,10 +17,12 @@ jobs:
         working-directory: app/src
         with:
           node-version: 16
-        run: yarn install
+      
+      - run: yarn install
+        working-directory: app/src
 
-      - uses: actions/setup-node@v3
-        run: yarn build
+      - run: yarn build
+        working-directory: app/src
 
       - uses: actions/upload-artifact@v2
         working-directory: app/src
