@@ -19,8 +19,10 @@ jobs:
           node-version: 16
       
       - run: yarn install
+        working-directory: app/src
 
       - run: yarn build
+        working-directory: app/src
 
       - uses: actions/upload-artifact@v2
         working-directory: app/src
