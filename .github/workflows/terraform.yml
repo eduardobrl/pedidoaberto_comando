@@ -13,15 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses: borales/actions-yarn@v3.0.0
+      - uses: actions/setup-node@v3
         working-directory: app/src
         with:
-          cmd: install
+          node-version: 16
+        run: yarn install
 
-      - uses: borales/actions-yarn@v3.0.0
-        working-directory: app/src
-        with:
-          cmd: build
+      - uses: actions/setup-node@v3
+        run: yarn build
 
       - uses: actions/upload-artifact@v2
         working-directory: app/src
