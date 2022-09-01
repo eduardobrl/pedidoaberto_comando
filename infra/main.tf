@@ -35,7 +35,7 @@ resource "aws_lambda_function" "api_handler" {
   filename      = "app.zip"
   function_name = "${var.app_name}-${var.microservice_name}-lambda"
   role          = aws_iam_role.role.arn
-  handler       = "index.app"
+  handler       = "index.handler"
   runtime       = "nodejs12.x"
 
   source_code_hash = filebase64sha256("app.zip")
