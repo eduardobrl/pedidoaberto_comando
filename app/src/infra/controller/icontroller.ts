@@ -1,5 +1,6 @@
+import express, { Express, Handler, Request, Response } from 'express';
 interface IController {
-    register(): void
+    register(app: Express): Express
 }
 
 export default IController;

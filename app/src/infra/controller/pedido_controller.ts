@@ -4,11 +4,10 @@ import express, { Express, Handler, Request, Response } from 'express';
 import IController from './icontroller';
 
 class PedidoController implements IController{
-    constructor(private app : Express){ }
 
-    public register():Express
+    public register(app: Express):Express
     {
-        app.get('/', (req: Request, res: Response) => {
+        app.get('/{id}', (req: Request, res: Response) => {
             res.send('GET Express + TypeScript Server');
         });
 
