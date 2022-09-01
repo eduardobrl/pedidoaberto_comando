@@ -1,9 +1,8 @@
 import express, { Express, Handler, Request, Response } from 'express';
+import addControllers from './infra/controller/controller';
 
 const app: Express = express();
 
-app.post('/', (req: Request, res: Response) => {
-    res.send('POST Express + TypeScript Server');
-});
+addControllers(app)
 
 export default app;
