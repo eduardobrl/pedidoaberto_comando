@@ -8,7 +8,7 @@ dotenv.config();
 let serverlessExpressInstance: any
 
 function asyncTask () {
-    //prismaStart()
+    prismaStart()
 }
   
 function setup (event:any, context:any) {

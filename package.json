@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "prisma": "^4.3.0"
+  },
+  "prisma": {
+    "schema" : "app/src/infra/prisma/schema.prisma"
   }
 }
