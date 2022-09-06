@@ -37,6 +37,7 @@ resource "aws_lambda_function" "api_handler" {
   role          = aws_iam_role.role.arn
   handler       = "index.handler"
   runtime       = "nodejs14.x"
+  timeout       = 30
 
   source_code_hash = filebase64sha256("app.zip")
 }
