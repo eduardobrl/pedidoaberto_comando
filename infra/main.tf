@@ -38,6 +38,7 @@ resource "aws_lambda_function" "api_handler" {
   handler       = "index.handler"
   runtime       = "nodejs14.x"
   timeout       = 30
+  memory_size   = 512
 
   source_code_hash = filebase64sha256("app.zip")
 }
