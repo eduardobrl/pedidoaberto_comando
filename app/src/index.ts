@@ -1,4 +1,3 @@
-import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
 import app from './app'
 import dotenv from 'dotenv';
 import {configure} from '@vendia/serverless-express'
@@ -8,7 +7,7 @@ dotenv.config();
 let serverlessExpressInstance: any
 
 function asyncTask () {
-    //prismaStart()
+    prismaStart()
 }
   
 function setup (event:any, context:any) {
