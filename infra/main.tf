@@ -118,6 +118,13 @@ resource "aws_api_gateway_stage" "dev_stage" {
   stage_name    = "dev"
 }
 
+resource "aws_lambda_layer_version" "lambda_dependencies_layer" {
+  filename   = "lambda_dependencies_layer.zip"
+  layer_name = "lambda_dependencies_layer"
+
+  compatible_runtimes = ["nodejs14.x"]
+}
+
 # IAM
 resource "aws_iam_role" "role" {
   name = "myrole"
