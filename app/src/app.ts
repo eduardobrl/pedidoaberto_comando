@@ -1,10 +1,12 @@
 import { Prisma, StatusPedido } from '@prisma/client';
+import bodyParser from 'body-parser';
 import express, { Express, Handler, Request, Response } from 'express';
 import { prismaStart, prismaClient} from './infra/prisma/prisma_connector';
 
 const app: Express = express();
-app.use(express.json());
+//app.use(express.json());
 
+app.use(bodyParser.json())
 
 app.get('/', (req: Request, res: Response) => {
     res.send('GET Express + TypeScript Server');
