@@ -19,6 +19,15 @@ jobs:
       
       - run: cd app/src && yarn install
 
+      - run: cp node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x nodejs/node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x
+
+      - run: zip -r lambda_dependencies_layer.zip nodejs
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: lambda_layer
+          path: lambda_dependencies_layer.zip
+
       - run: cd app/src && yarn build
 
       - uses: actions/upload-artifact@v2
@@ -39,6 +48,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: lambda
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: lambda_dependencies_layer
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
