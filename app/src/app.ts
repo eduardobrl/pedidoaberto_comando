@@ -25,14 +25,7 @@ app.post('/produto', async (req: Request, res: Response) => {
     console.log(produto)
 
     try {
-        const client = prismaClient;
-        await client.produto.create({data:{
-            nome:"Teste", 
-            quantidadeEstoque:10,
-            sku:"123456789",
-            valor: 100.5,
-            
-        }})
+        await prismaClient.produto.create({data:produto})
       } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
           // The .code property can be accessed in a type-safe manner
