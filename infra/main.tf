@@ -119,7 +119,9 @@ resource "aws_api_gateway_stage" "dev_stage" {
 # IAM
 resource "aws_iam_role" "role" {
   name = "myrole"
-
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+    "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"]
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
