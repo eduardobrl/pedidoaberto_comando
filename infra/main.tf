@@ -36,7 +36,7 @@ resource "aws_lambda_function" "api_handler" {
   function_name = "${var.app_name}-${var.microservice_name}-lambda"
   role          = aws_iam_role.role.arn
   handler       = "index.handler"
-  runtime       = "nodejs12.x"
+  runtime       = "nodejs14.x"
 
   source_code_hash = filebase64sha256("app.zip")
 }
@@ -119,7 +119,9 @@ resource "aws_api_gateway_stage" "dev_stage" {
 # IAM
 resource "aws_iam_role" "role" {
   name = "myrole"
-
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+    "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"]
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
