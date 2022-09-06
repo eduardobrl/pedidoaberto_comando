@@ -1,10 +1,10 @@
-datasource db {
-  url      = env("DATABASE_URL")
-  provider = "postgresql"
-}
-
 generator client {
   provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Cliente {
@@ -23,26 +23,19 @@ model Cliente {
 model Pedido {
   id        String           @id @default(uuid())
   createdAt DateTime         @default(now())
-  detalhes  DetalhesPedido[]
   status    StatusPedido
-}
-
-enum StatusPedido {
-  ABERTO
-  PAGO
-  ENVIADO
-  FINALIZADO
+  detalhes  DetalhesPedido[]
 }
 
 model DetalhesPedido {
   id         String    @id @default(uuid())
   createdAt  DateTime  @default(now())
-  produto    Produto[]
   quantidade Int
-  cliente    Cliente   @relation(fields: [clienteId], references: [id])
-  Pedido     Pedido?   @relation(fields: [pedidoId], references: [id])
   pedidoId   String?
   clienteId  String
+  cliente    Cliente   @relation(fields: [clienteId], references: [id])
+  Pedido     Pedido?   @relation(fields: [pedidoId], references: [id])
+  produto    Produto[]
 }
 
 model Produto {
@@ -55,6 +48,13 @@ model Produto {
   peso              Int?
   largura           Int?
   produndidade      Int?
-  DetalhesPedido    DetalhesPedido? @relation(fields: [detalhesPedidoId], references: [id])
   detalhesPedidoId  String?
+  DetalhesPedido    DetalhesPedido? @relation(fields: [detalhesPedidoId], references: [id])
+}
+
+enum StatusPedido {
+  ABERTO
+  PAGO
+  ENVIADO
+  FINALIZADO
 }
