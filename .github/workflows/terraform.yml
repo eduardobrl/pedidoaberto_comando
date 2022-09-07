@@ -32,6 +32,8 @@ jobs:
 
       - run: cd app/src && yarn build
 
+      - run: cd app/src && cp infra/prisma/schema.prisma dist/schema.prisma && cd dist && zip -r index.zip .
+
       - uses: actions/upload-artifact@v2
         with:
           name: lambda
