@@ -10,20 +10,20 @@ jobs:
   build:
     name: Build App
     runs-on: ubuntu-latest
+    env:
+      PRISMA_CLIENT_OUTPUT : /opt/nodejs/node_modules/.prisma/client
     steps:
       - uses: actions/checkout@v2
       
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - run: mkdir -p ${PRISMA_CLIENT_OUTPUT}
      
-      - run: export PRISMA_CLIENT_OUTPUT=../../node_modules/.prisma/client && cd app/src && yarn install && yarn prisma generate && ls -a ./node_modules/.prisma/client
+      - run: cd app/src && yarn install && yarn prisma generate
 
-      - run: mkdir -p nodejs/node_modules/.prisma/client
-
-      - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
-
-      - run: zip -r lambda_dependencies_layer.zip nodejs
+      - run: zip -r lambda_dependencies_layer.zip /opt/nodejs
 
       - uses: actions/upload-artifact@v2
         with:
