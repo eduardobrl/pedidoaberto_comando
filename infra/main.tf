@@ -40,6 +40,12 @@ resource "aws_lambda_function" "api_handler" {
   timeout       = 30
   memory_size   = 512
 
+  environment {
+    variables = {
+      PRISMA_CLIENT_OUTPUT = "/opt/nodejs/node_modules/.prisma/client"
+    }
+  }
+
   source_code_hash = filebase64sha256("app.zip")
   layers = [aws_lambda_layer_version.lambda_dependencies_layer.arn]
 }
