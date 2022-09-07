@@ -41,6 +41,7 @@ resource "aws_lambda_function" "api_handler" {
   memory_size   = 512
 
   source_code_hash = filebase64sha256("app.zip")
+  layers = [aws_lambda_layer_version.lambda_dependencies_layer.arn]
 }
 
 
