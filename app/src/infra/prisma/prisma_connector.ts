@@ -1,4 +1,4 @@
-import { PrismaClient } from ".prisma/client"
+import { PrismaClient } from "/opt/nodejs/node_modules/.prisma/client"
 import { SecretsManager, SSM } from "aws-sdk"
 import Contants  from '../../domain/constants/constants'
 let prismaClient : PrismaClient
