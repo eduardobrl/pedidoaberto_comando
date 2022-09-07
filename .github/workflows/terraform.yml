@@ -16,12 +16,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client
       
       - run: cd app/src && yarn install && yarn prisma generate
 
       - run: mkdir -p nodejs/node_modules/.prisma/client
-
-      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client
 
       - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
