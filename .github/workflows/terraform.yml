@@ -23,7 +23,7 @@ jobs:
      
       - run: cd app/src && yarn install
 
-      - run: cp app/src/node_modules /opt/nodejs/node_modules
+      - run: cp -r app/src/node_modules /opt/nodejs/node_modules
 
       - run: cd app/src && yarn prisma generate
 
