@@ -21,7 +21,11 @@ jobs:
 
       - run: mkdir -p ${PRISMA_CLIENT_OUTPUT}
      
-      - run: cd app/src && yarn install && yarn prisma generate
+      - run: cd app/src && yarn install
+
+      - run: cp app/src/node_modules /opt/nodejs/node_modules
+
+      - run: cd app/src && yarn prisma generate
 
       - run: zip -r lambda_dependencies_layer.zip /opt/nodejs
 
