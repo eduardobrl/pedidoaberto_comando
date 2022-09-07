@@ -1,4 +1,4 @@
-import { Prisma, StatusPedido } from '@prisma/client';
+import { Prisma, StatusPedido } from '/opt/nodejs/node_modules/.prisma/client';
 import bodyParser from 'body-parser';
 import express, { Express, Handler, Request, Response } from 'express';
 import { prismaStart, prismaClient} from './infra/prisma/prisma_connector';
