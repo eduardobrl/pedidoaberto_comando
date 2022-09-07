@@ -23,7 +23,7 @@ jobs:
 
       - run: ls app/src/node_modules/.prisma/client -a
 
-      - run: cp app/src/node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x nodejs/node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x
+      - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
       - run: zip -r lambda_dependencies_layer.zip nodejs
 
