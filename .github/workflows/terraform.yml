@@ -17,7 +17,11 @@ jobs:
         with:
           node-version: 16
       
-      - run: cd app/src && yarn install && yarn prisma generate && ls -r *
+      - run: cd app/src && yarn install && yarn prisma generate
+
+      - run: ls app/src/node_modules -a
+
+      - run: ls app/src/node_modules/.prisma/client -a
 
       - run: cp app/src/node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x nodejs/node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x
 
