@@ -23,8 +23,6 @@ jobs:
 
       - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
-      - run: mkdir -p app/src/dist/node_modules/.prisma/client
-
       - run: zip -r lambda_dependencies_layer.zip nodejs
 
       - uses: actions/upload-artifact@v2
