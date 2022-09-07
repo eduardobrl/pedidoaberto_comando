@@ -34,7 +34,7 @@ jobs:
           name: lambda_layer
           path: lambda_dependencies_layer.zip
 
-      - run: cd app/src && yarn build
+      - run: cd app/src && yarn build && cd dist && ls -a
 
       - run: cd app/src && cp infra/prisma/schema.prisma dist/schema.prisma && cd dist && zip -r index.zip .
 
