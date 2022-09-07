@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: lambda_dependencies_layer
+          name: lambda_layer
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
