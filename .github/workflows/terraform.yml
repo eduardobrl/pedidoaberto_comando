@@ -19,7 +19,7 @@ jobs:
       
       - run: cd app/src && yarn install && yarn prisma generate
 
-      - run: mkdir nodejs/node_modules/.prisma/client
+      - run: mkdir -p nodejs/node_modules/.prisma/client
 
       - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
