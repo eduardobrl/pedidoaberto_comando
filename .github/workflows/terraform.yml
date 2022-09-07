@@ -19,10 +19,6 @@ jobs:
       
       - run: cd app/src && yarn install && yarn prisma generate
 
-      - run: ls app/src/node_modules -a
-
-      - run: ls app/src/node_modules/.prisma/client -a
-
       - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
       - run: zip -r lambda_dependencies_layer.zip nodejs
