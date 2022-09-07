@@ -73,6 +73,8 @@ jobs:
       - name: Move app source code
         run: mv index.zip infra/app.zip
 
+      - run: mv lambda_dependencies_layer.zip infra/lambda_dependencies_layer.zip
+
       - name: Terraform Validate
         id: validate
         working-directory: infra
