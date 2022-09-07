@@ -21,6 +21,8 @@ jobs:
 
       - run: mkdir -p nodejs/node_modules/.prisma/client
 
+      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client
+
       - run: cp app/src/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node
 
       - run: zip -r lambda_dependencies_layer.zip nodejs
