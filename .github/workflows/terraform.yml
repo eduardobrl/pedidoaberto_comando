@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 16
      
-      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client && cd app/src && yarn install && yarn prisma generate
+      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client && cd app/src && yarn install && yarn prisma generate && ls -a ./node_modules/.prisma/client
 
       - run: mkdir -p nodejs/node_modules/.prisma/client
 
