@@ -16,10 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client
-      
-      - run: cd app/src && yarn install && yarn prisma generate
+     
+      - run: export PRISMA_CLIENT_OUTPUT=./node_modules/.prisma/client && cd app/src && yarn install && yarn prisma generate
 
       - run: mkdir -p nodejs/node_modules/.prisma/client
 
